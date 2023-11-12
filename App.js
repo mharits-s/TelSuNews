@@ -1,20 +1,39 @@
+import React, { Component } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { News, Home, DetailNews } from './screens';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import { NativeBaseProvider, extendTheme} from "native-base";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+const Stack = createNativeStackNavigator();
+
+class App extends Component {
+  render() {
+    const headerStyle = {
+      headerTitleStyle: { color: "white" },
+      headerStyle: {
+        backgroundColor: "#AA0002",
+      },
+      headerTintColor: "white",
+    };
+    return (
+      <NavigationContainer>
+        <StatusBar style='auto' color= "#FFFFFF" backgroundColor='#B20819' />
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={Home} options={{ headerShown: false}}/>
+          <Stack.Screen name="News" component={News} options={{ headerTitle: 'Berita Terkini', 
+          ...headerStyle,
+          }}/>
+          <Stack.Screen name="DetailNews" component={DetailNews} options={{ headerTitle: 'Detail Berita', 
+          ...headerStyle,
+          }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
+export default App;
