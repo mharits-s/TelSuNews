@@ -4,13 +4,10 @@ import {
     View,
     StyleSheet,
     Image,
-    Dimensions,
     Linking,
     ScrollView,
 } from "react-native";
 import { Separator, Button } from '../components/index';
-
-const windowWidth = Dimensions.get("window").width;
 
 class DetailNews extends Component {
     backHomepage = () => {
@@ -35,16 +32,17 @@ class DetailNews extends Component {
                     <View style={styles.paddingContainer}>
                         <Text style={styles.content}>{'\u00A0\u00A0\u00A0\u00A0\u00A0'}{data.content}</Text>
                     </View>
-
-                    <Button
-                        text="Read More"
-                        onPress={() =>
-                            Linking.openURL(data.link).catch((err) => console.error("Error", err))
-                        }
-                    />
                 </View>
                 
             </ScrollView>
+            <View style={{backgroundColor: '#FFFFFF'}}>
+            <Button
+                text="Read More"
+                onPress={() =>
+                    Linking.openURL(data.link).catch((err) => console.error("Error", err))
+                }
+            />
+            </View>
             </>
         );
     }
@@ -54,9 +52,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 24,
-    },
-    BackgroundArticle: {
-        flex: 1,
+      backgroundColor: '#FFFFFF',
     },
     image: {
       width: '100%',
