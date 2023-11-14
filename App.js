@@ -3,33 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { News, Home, DetailNews } from './screens';
 import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider, extendTheme, HStack} from "native-base";
+import { NativeBaseProvider, HStack} from "native-base";
 import SwitchToggle from 'react-native-switch-toggle';
-
+import { LightTheme, DarkTheme } from './components/colors';
 
 const Stack = createNativeStackNavigator();
-
-const theme = extendTheme({
-  colors: {
-    darkMode: {
-      white: '#FFFFFF',
-      black: '#000000',
-      100: '#FAFAFA',
-      200: '#D9D9D9',
-      300: '#BFBFBF',
-      400: '#A6A6A6',
-      500: '#8C8C8C',
-      600: '#737373',
-      700: '#595959',
-      800: '#404040',
-      900: '#131313',
-    },
-    brandColors: {
-      red: '#B20819',
-      gold: '#D4AF37'
-    },
-  },
-});
 
 class App extends Component {
   constructor(props) {
@@ -44,12 +22,15 @@ class App extends Component {
   }
 
   render() {
+    
     const headerBackgroundColor = this.state.isDarkMode
-    ? theme.colors.brandColors['gold']
-    : theme.colors.brandColors['red'];
-
+      ? DarkTheme.headerBackground
+      : LightTheme.headerBackground;
+    const headerTintColor = this.state.isDarkMode
+      ? LightTheme.text
+      : DarkTheme.text;
     return (
-      <NativeBaseProvider theme={theme}>
+      <NativeBaseProvider>
         <NavigationContainer>
           <StatusBar style='auto' />
           <Stack.Navigator initialRouteName="Home">
@@ -81,6 +62,7 @@ class App extends Component {
                 ),
               }}
             />
+            {props => <Home {...props} isDarkMode={this.state.isDarkMode} />}
             <Stack.Screen
               name="News"
               component={News}
@@ -90,7 +72,7 @@ class App extends Component {
                 headerStyle: {
                   backgroundColor: headerBackgroundColor,
                 },
-                headerTintColor: theme.colors.white,
+                headerTintColor: headerTintColor,
                 headerRight: () => (
                   <HStack space={2} alignItems="center" pr={2}>
                     <SwitchToggle
@@ -114,6 +96,7 @@ class App extends Component {
                 ),
               }}
             />
+            {props => <News {...props} isDarkMode={this.state.isDarkMode} />}
             <Stack.Screen
               name="DetailNews"
               component={DetailNews}
@@ -122,7 +105,7 @@ class App extends Component {
                 headerStyle: {
                   backgroundColor: headerBackgroundColor,
                 },
-                headerTintColor: theme.colors.white,
+                headerTintColor: headerTintColor,
                 headerRight: () => (
                   <HStack space={2} alignItems="center" pr={2}>
                     <SwitchToggle
@@ -146,6 +129,7 @@ class App extends Component {
                 ),
               }}
             />
+            {props => <DetailNews {...props} isDarkMode={this.state.isDarkMode} />}
           </Stack.Navigator>
         </NavigationContainer>
       </NativeBaseProvider>
