@@ -22,114 +22,61 @@ class App extends Component {
   }
 
   render() {
-    
     const headerBackgroundColor = this.state.isDarkMode
       ? DarkTheme.headerBackground
       : LightTheme.headerBackground;
     const headerTintColor = this.state.isDarkMode
       ? LightTheme.text
       : DarkTheme.text;
+
+    const screenOptions = {
+
+      headerRight: () => (
+        <HStack space={2} alignItems="center" pr={2}>
+          <SwitchToggle
+            containerStyle={{
+              width: 50,
+              height: 30,
+              borderRadius: 25,
+              backgroundColor: '#e4e3e3',
+              padding: 5,
+            }}
+            circleStyle={{
+              width: 25,
+              height: 25,
+              borderRadius: 12.5,
+              backgroundColor: 'white',
+            }}
+            switchOn={this.state.isDarkMode}
+            onPress={this.toggleDarkMode}
+          />
+        </HStack>
+      ),
+      cardStyle: { backgroundColor: this.state.isDarkMode ? DarkTheme.background : LightTheme.background },
+    };
+
     return (
       <NativeBaseProvider>
         <NavigationContainer>
           <StatusBar style='auto' />
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen
-              name="Home"
-              component={Home}
-              options={{
-                headerShown: false,
-                headerRight: () => (
-                  <HStack space={2} alignItems="center" pr={2}>
-                    <SwitchToggle
-                      containerStyle={{
-                        width: 50,
-                        height: 30,
-                        borderRadius: 25,
-                        backgroundColor: '#e4e3e3',
-                        padding: 5,
-                      }}
-                      circleStyle={{
-                        width: 25,
-                        height: 25,
-                        borderRadius: 12.5,
-                        backgroundColor: 'white',
-                      }}
-                      switchOn={this.state.isDarkMode}
-                      onPress={this.toggleDarkMode}
-                    />
-                  </HStack>
-                ),
-              }}
-            />
-            {props => <Home {...props} isDarkMode={this.state.isDarkMode} />}
-            <Stack.Screen
-              name="News"
-              component={News}
-              initialParams={{ isDarkMode: this.state.isDarkMode }}
-              options={{
-                headerTitle: 'Berita Terkini',
-                headerStyle: {
-                  backgroundColor: headerBackgroundColor,
-                },
-                headerTintColor: headerTintColor,
-                headerRight: () => (
-                  <HStack space={2} alignItems="center" pr={2}>
-                    <SwitchToggle
-                      containerStyle={{
-                        width: 50,
-                        height: 30,
-                        borderRadius: 25,
-                        backgroundColor: '#e4e3e3',
-                        padding: 5,
-                      }}
-                      circleStyle={{
-                        width: 25,
-                        height: 25,
-                        borderRadius: 12.5,
-                        backgroundColor: 'white',
-                      }}
-                      switchOn={this.state.isDarkMode}
-                      onPress={this.toggleDarkMode}
-                    />
-                  </HStack>
-                ),
-              }}
-            />
-            {props => <News {...props} isDarkMode={this.state.isDarkMode} />}
-            <Stack.Screen
-              name="DetailNews"
-              component={DetailNews}
-              options={{
-                headerTitle: 'Detail Berita',
-                headerStyle: {
-                  backgroundColor: headerBackgroundColor,
-                },
-                headerTintColor: headerTintColor,
-                headerRight: () => (
-                  <HStack space={2} alignItems="center" pr={2}>
-                    <SwitchToggle
-                      containerStyle={{
-                        width: 50,
-                        height: 30,
-                        borderRadius: 25,
-                        backgroundColor: '#e4e3e3',
-                        padding: 5,
-                      }}
-                      circleStyle={{
-                        width: 25,
-                        height: 25,
-                        borderRadius: 12.5,
-                        backgroundColor: 'white',
-                      }}
-                      switchOn={this.state.isDarkMode}
-                      onPress={this.toggleDarkMode}
-                    />
-                  </HStack>
-                ),
-              }}
-            />
-            {props => <DetailNews {...props} isDarkMode={this.state.isDarkMode} />}
+          <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+            <Stack.Screen name="Home" component={Home}
+            options={{
+              headerShown: false}}/>
+            <Stack.Screen name="News" component={News}
+            options={{
+              headerTitle: 'Berita Terkini',
+              headerStyle: {
+                backgroundColor: headerBackgroundColor,
+              },
+              headerTintColor: headerTintColor,}}/>
+            <Stack.Screen name="DetailNews" component={DetailNews}
+            options={{
+              headerTitle: 'Detail Berita',
+              headerStyle: {
+                backgroundColor: headerBackgroundColor,
+              },
+              headerTintColor: headerTintColor,}}/>
           </Stack.Navigator>
         </NavigationContainer>
       </NativeBaseProvider>

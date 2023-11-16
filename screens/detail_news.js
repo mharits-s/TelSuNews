@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import {
-    Text,
-    View,
-    StyleSheet,
-    Image,
-    Linking,
-    ScrollView,
-} from "react-native";
+import { StyleSheet, Text,View, Image, Linking, ScrollView,} from 'react-native';
 import { Separator, Button } from '../components/index';
 
 class DetailNews extends Component {
-    backHomepage = () => {
-        this.props.navigation.navigate('Article');
+    backToNewspage = () => {
+        this.props.navigation.navigate('News');
     }
     render() {
         const { route } = this.props;
@@ -19,7 +12,7 @@ class DetailNews extends Component {
 
         return (
             <>
-            <ScrollView>
+            <ScrollView style={{backgroundColor: '#1B1B1B'}}>
                 <View style={styles.container}>
                 <View style={styles.paddingContainer}>
                         <Text style={styles.title}>{data.title}</Text>
@@ -35,7 +28,7 @@ class DetailNews extends Component {
                 </View>
                 
             </ScrollView>
-            <View style={{backgroundColor: '#FFFFFF'}}>
+            <View style={{backgroundColor: '#1B1B1B'}}>
             <Button
                 text="Read More"
                 onPress={() =>
@@ -52,7 +45,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 24,
-      backgroundColor: '#FFFFFF',
+      backgroundColor: '#1B1B1B',
     },
     image: {
       width: '100%',
@@ -64,16 +57,17 @@ const styles = StyleSheet.create({
       fontSize: 22,
       fontWeight: "bold",
       textAlign: 'center',
-      color: '#B20819',
+      color: '#D4AF37',
     },
     date: {
         fontSize: 12,
         textAlign: 'center',
-        color: '#6B6B6B',
+        color: '#BFBFBF',
     },
     content: {
       fontSize: 15,
       textAlign: 'justify',
+      color: '#FFFFFF',
     },
     paddingContainer: {
         padding: 10,

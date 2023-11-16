@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     item: {
       padding: 24,
-      backgroundColor: "white",
+      backgroundColor: '#1B1B1B',
     },
     itemBorder: {
       borderWidth: 0.5,
@@ -92,11 +92,12 @@ const styles = StyleSheet.create({
       width: windowWidth - 150,
       marginLeft: 12,
       fontWeight: '600',
+      color: "#FFFFFF",
     },
     date: {
         fontSize: 12,
         fontWeight: "regular",
         marginLeft: 12,
-        color: "#6B6B6B",
+        color: "#BFBFBF",
     }
   });

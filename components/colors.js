@@ -8,7 +8,7 @@ export class LightTheme {
 }
 
 export class DarkTheme {
-  static background = '#131313';
+  static background = '#1B1B1B';
   static text = '#FFFFFF';
   static desc = '#6B6B6B';
   static headerBackground = '#D4AF37';

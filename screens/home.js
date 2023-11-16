@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, Linking, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, Linking, StyleSheet} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Button } from '../components/index';
 
 class Home extends Component {
-  navigateToListArticle = () => {
+    navigateToNews = () => {
     this.props.navigation.navigate('News');
   }
 
@@ -83,27 +83,27 @@ class Home extends Component {
         />
         <View style={{
             position: 'absolute',
-            top: 340,
+            top: 320,
             left: 0,
             right: 0,
-            backgroundColor: 'linear-gradient(rgba(0, 0, 0, 0.7), transparent)', 
+            backgroundColor: 'linear-gradient(rgba(255, 255, 255, 0.7), transparent)', 
             flexDirection: 'row',
           }}>
             <Image source={require('../assets/IF.png')} style={{...styles.icon, marginLeft: 7, marginVertical: 7,}}/>
             <View style={{flexDirection: 'column'}}>
-              <Text style={{...styles.nama, color: '#FFFFFF', marginTop: 7,}}>{Name}</Text>
-              <Text style={{...styles.desc, color: '#FFFFFF', marginBottom: 7,}}>{NIM}</Text>
+              <Text style={{...styles.nama, color: '#1B1B1B', marginTop: 7,}}>{Name}</Text>
+              <Text style={{...styles.desc, color: '#1B1B1B', marginBottom: 7,}}>{NIM}</Text>
             </View>
           </View>
           <FlatList
             data={cardData}
             renderItem={this.renderCard}
-            keyExtractor={(item, index) => index.toString()} style={{marginTop: 12}}
+            keyExtractor={(item, index) => index.toString()} style={{ backgroundColor: '#1B1B1B'}}
           />
         <TouchableOpacity style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
           <Button
             text="Lihat Berita"
-            onPress={this.navigateToListArticle}
+            onPress={this.navigateToNews}
           />
         </TouchableOpacity>
       </View>
@@ -113,7 +113,7 @@ class Home extends Component {
 
 export default Home;
 
-const styles = {
+const styles = StyleSheet.create({
   icon: {
     width: 42,
     height: 42,
@@ -129,10 +129,12 @@ const styles = {
     fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'left',
+    color: '#FFFFFF',
   },
   desc: {
     textAlign: 'left',
     fontSize: 12,
-    color: '#6B6B6B',
+    color: '#BFBFBF',
   },
-};
+});
+
